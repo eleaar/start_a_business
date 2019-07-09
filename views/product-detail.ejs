@@ -156,8 +156,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '<%= general_info.pixel_id %>');
+        fbq('track', 'AddToCart', {
+            content_type: 'product',
+            contents: [{
+              id: '<%= product.id %>',
+              quantity: 1,
+            }],
+            value: '<%= product.price %>'.substring(0,3),
+            currency: 'USD'
+        });
         fbq('track', 'ViewContent', {
-            content_ids: ['<%= product.id %>'],
+            contents: [{
+              id: '<%= product.id %>',
+              quantity: 1,
+            }],
             content_type: 'product',
             value: '<%= product.price %>'.substring(0,3),
             currency: 'USD'
